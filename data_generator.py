@@ -24,6 +24,12 @@ def generate():
         i = np.random.choice(n)
         sl = p[i:i + slice_size]
 
+        if sl.isnull().values.any():
+            # sometimes prices are discontinuous and nothing happened in one 5min bucket.
+            # in that case, we consider this slice as wrong and we ask for a new one.
+            # it's likely to happen at the beginning of the data set where the volumes are low.
+            continue
+
         last_price = sl[-2:-1]['price_close'].values[0]
         next_price = p[i + slice_size:i + slice_size + 1]['price_close'].values[0]
 

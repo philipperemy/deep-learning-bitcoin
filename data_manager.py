@@ -4,7 +4,7 @@ import pandas as pd
 
 from utils import save_to_file
 
-DATA_FILE = '/Users/philipperemy/Downloads/coinbaseUSD.csv'
+DATA_FILE = '/tmp/coinbaseUSD_mini.csv'
 
 
 # http://api.bitcoincharts.com/v1/csv/
@@ -27,4 +27,3 @@ if __name__ == '__main__':
     p = file_processor()
     save_to_file(p, '1.png')
     save_to_file(p, '2.png')
-    # file_processor()
