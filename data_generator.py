@@ -1,5 +1,6 @@
 import os
 import shutil
+import sys
 from time import time
 from uuid import uuid4
 
@@ -8,16 +9,14 @@ import numpy as np
 from data_manager import file_processor
 from utils import *
 
-DATA_FOLDER = '/tmp/btc-trading-patterns/'
 
-
-def generate():
-    p = file_processor()
+def generate(data_folder, bitcoin_file):
+    p = file_processor(bitcoin_file)
     slice_size = 40
     test_every_steps = 10
     n = len(p) - slice_size
 
-    shutil.rmtree(DATA_FOLDER, ignore_errors=True)
+    shutil.rmtree(data_folder, ignore_errors=True)
     for epoch in range(int(1e5)):
         st = time()
 
@@ -38,14 +37,23 @@ def generate():
         else:
             direction = 'DOWN'
 
-        save_dir = os.path.join(DATA_FOLDER, 'train', direction)
+        save_dir = os.path.join(data_folder, 'train', direction)
         if epoch % test_every_steps == 0:
-            save_dir = os.path.join(DATA_FOLDER, 'test', direction)
+            save_dir = os.path.join(data_folder, 'test', direction)
         mkdir_p(save_dir)
         save_to_file(sl, filename=save_dir + '/' + str(uuid4()) + '.png')
 
         print('epoch = {0}, time = {1:.3f}'.format(str(epoch).zfill(8), time() - st))
 
 
+def main():
+    arg = sys.argv
+    assert len(arg) == 3, 'Usage: python3 {} DATA_FOLDER_TO_STORE_GENERATED_DATASET ' \
+                          'BITCOIN_MARKET_DATA_CSV_PATH'.format(arg[0])
+    data_folder = arg[1]
+    bitcoin_file = arg[2]
+    generate(data_folder, bitcoin_file)
+
+
 if __name__ == '__main__':
-    generate()
+    main()
