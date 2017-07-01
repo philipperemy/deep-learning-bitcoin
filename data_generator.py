@@ -17,7 +17,7 @@ def generate(data_folder, bitcoin_file):
     n = len(p) - slice_size
 
     shutil.rmtree(data_folder, ignore_errors=True)
-    for epoch in range(int(1e5)):
+    for epoch in range(int(1e6)):
         st = time()
 
         i = np.random.choice(n)
