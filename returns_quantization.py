@@ -9,9 +9,9 @@ from utils import compute_returns
 def add_returns_in_place(df):  # modifies df
     close_prices_returns = compute_returns(df)
     num_bins = 10
-    returns_bins = pd.cut(close_prices_returns, num_bins)
+    returns_bins = pd.qcut(close_prices_returns, num_bins)
     bins_categories = returns_bins.values.categories
-    returns_labels = pd.cut(close_prices_returns, num_bins, labels=False)
+    returns_labels = pd.qcut(close_prices_returns, num_bins, labels=False)
 
     df['close_price_returns'] = close_prices_returns
     df['close_price_returns_bins'] = returns_bins
