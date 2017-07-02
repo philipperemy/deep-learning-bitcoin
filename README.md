@@ -22,13 +22,18 @@ So far, we achieved:
 - [ ] Integrate bar volumes on the generated OHLC (Open, High, Low, Close) image
 - [ ] Use CNN attention to know what's important for which image. Maybe only a fraction of the image matters for the prediction
 
+## Results on 20,000 samples (small dataset)
 
 <p align="center">
   <img src="assets/1.png" width="500">
   <br><i>Training on 5 minute price data (Coinbase USD)</i>
 </p>
 
+<hr/>
+
 <p align="center">
   <img src="assets/2.png" width="500">
   <br><i>Some examples of the training set</i>
 </p>
+
+<hr/>
