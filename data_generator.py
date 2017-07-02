@@ -6,6 +6,7 @@ from uuid import uuid4
 
 import numpy as np
 import pandas as pd
+
 from data_manager import file_processor
 from returns_quantization import add_returns_in_place
 from utils import *
@@ -41,6 +42,8 @@ def generate_up_down(data_folder, bitcoin_file):
 def generate_cnn_dataset(data_folder, bitcoin_file, get_class_name):
     btc_df = file_processor(bitcoin_file)
     btc_df, levels = add_returns_in_place(btc_df)
+    # np.mean((btc_df['close_price_returns_labels'] == 1).values)
+    print(levels)
     slice_size = 40
     test_every_steps = 10
     n = len(btc_df) - slice_size
@@ -63,8 +66,9 @@ def generate_cnn_dataset(data_folder, bitcoin_file, get_class_name):
         if epoch % test_every_steps == 0:
             save_dir = os.path.join(data_folder, 'test', class_name)
         mkdir_p(save_dir)
-        save_to_file(btc_slice, filename=save_dir + '/' + str(uuid4()) + '.png')
-        print('epoch = {0}, time = {1:.3f}'.format(str(epoch).zfill(8), time() - st))
+        filename = save_dir + '/' + str(uuid4()) + '.png'
+        save_to_file(btc_slice, filename=filename)
+        print('epoch = {0}, time = {1:.3f}, filename = {2}'.format(str(epoch).zfill(8), time() - st, filename))
 
 
 def main():
