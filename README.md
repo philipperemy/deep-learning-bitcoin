@@ -48,5 +48,6 @@ DateTime_UTC
 2017-05-29 12:05:00     2158.49     2158.79    2141.12      2141.92  122.332090            -0.769505        (-1.0322, -0.683]                           3
 2017-05-29 12:10:00     2141.87     2165.90    2141.86      2162.44   87.253402             0.958019          (0.713, 1.0623]                           8
 ```
+- Scroll right to see all the columns!
 - Volumes are displayed in BTC.
 - Returns are in percentage and are computed on the close prices.
