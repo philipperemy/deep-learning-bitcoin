@@ -6,17 +6,23 @@ from data_manager import file_processor
 from utils import compute_returns
 
 
-def get_bins(p):
-    close_prices_returns = compute_returns(p)
+def add_returns_in_place(df):  # modifies df
+    close_prices_returns = compute_returns(df)
     num_bins = 10
-    returns_bins = pd.cut(close_prices_returns, num_bins).values.categories
+    returns_bins = pd.cut(close_prices_returns, num_bins)
+    bins_categories = returns_bins.values.categories
     returns_labels = pd.cut(close_prices_returns, num_bins, labels=False)
-    return returns_labels, returns_bins
+
+    df['close_price_returns'] = close_prices_returns
+    df['close_price_returns_bins'] = returns_bins
+    df['close_price_returns_labels'] = returns_labels
+
+    return df, bins_categories
 
 
 def generate_bins(data_folder, bitcoin_file):
     p = file_processor(bitcoin_file)
-    return get_bins(p)
+    add_returns_in_place(p)
 
 
 def main():

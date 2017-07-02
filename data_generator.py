@@ -7,39 +7,38 @@ from uuid import uuid4
 import numpy as np
 
 from data_manager import file_processor
-from returns_quantization import get_bins
+from returns_quantization import add_returns_in_place
 from utils import *
 
 
 def generate_quantiles(data_folder, bitcoin_file):
-    p = file_processor(bitcoin_file)
-    labels, levels = get_bins(p)
-    p['targets'] = labels
+    btc_df = file_processor(bitcoin_file)
+    btc_df, levels = add_returns_in_place(btc_df)
 
     slice_size = 40
     test_every_steps = 10
-    n = len(p) - slice_size
+    n = len(btc_df) - slice_size
 
     shutil.rmtree(data_folder, ignore_errors=True)
     for epoch in range(int(1e6)):
         st = time()
 
         i = np.random.choice(n)
-        sl = p[i:i + slice_size]
+        btc_slice = btc_df[i:i + slice_size]
 
-        if sl.isnull().values.any():
+        if btc_slice.isnull().values.any():
             # sometimes prices are discontinuous and nothing happened in one 5min bucket.
             # in that case, we consider this slice as wrong and we ask for a new one.
             # it's likely to happen at the beginning of the data set where the volumes are low.
             continue
 
-        predict_label = str(p[i + slice_size:i + slice_size + 1]['targets'].values[0])
+        predict_label = str(btc_df[i + slice_size:i + slice_size + 1]['close_prices_returns_labels'].values[0])
 
         save_dir = os.path.join(data_folder, 'train', predict_label)
         if epoch % test_every_steps == 0:
             save_dir = os.path.join(data_folder, 'test', predict_label)
         mkdir_p(save_dir)
-        save_to_file(sl, filename=save_dir + '/' + str(uuid4()) + '.png')
+        save_to_file(btc_slice, filename=save_dir + '/' + str(uuid4()) + '.png')
 
         print('epoch = {0}, time = {1:.3f}'.format(str(epoch).zfill(8), time() - st))
 
