@@ -21,7 +21,7 @@ def add_returns_in_place(df):  # modifies df
     return df, bins_categories
 
 
-def generate_bins(data_folder, bitcoin_file):
+def generate_bins(bitcoin_file):
     p = file_processor(bitcoin_file)
     add_returns_in_place(p)
 
@@ -32,7 +32,7 @@ def main():
                           'BITCOIN_MARKET_DATA_CSV_PATH'.format(arg[0])
     data_folder = arg[1]
     bitcoin_file = arg[2]
-    generate_bins(data_folder, bitcoin_file)
+    generate_bins(bitcoin_file)
 
 
 if __name__ == '__main__':
