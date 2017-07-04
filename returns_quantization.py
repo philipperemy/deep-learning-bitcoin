@@ -28,9 +28,7 @@ def generate_bins(bitcoin_file):
 
 def main():
     arg = sys.argv
-    assert len(arg) == 3, 'Usage: python3 {} DATA_FOLDER_TO_STORE_GENERATED_DATASET ' \
-                          'BITCOIN_MARKET_DATA_CSV_PATH'.format(arg[0])
-    data_folder = arg[1]
+    assert len(arg) == 2, 'Usage: python3 {} BITCOIN_MARKET_DATA_CSV_PATH'.format(arg[0])
     bitcoin_file = arg[2]
     generate_bins(bitcoin_file)
 
