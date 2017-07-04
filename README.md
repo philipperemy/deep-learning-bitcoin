@@ -22,13 +22,32 @@ So far, we achieved:
 - [ ] Integrate bar volumes on the generated OHLC (Open, High, Low, Close) image
 - [ ] Use CNN attention to know what's important for which image. Maybe only a fraction of the image matters for the prediction
 
+## Results on 20,000 samples (small dataset)
 
 <p align="center">
   <img src="assets/1.png" width="500">
   <br><i>Training on 5 minute price data (Coinbase USD)</i>
 </p>
 
+<hr/>
+
 <p align="center">
   <img src="assets/2.png" width="500">
   <br><i>Some examples of the training set</i>
 </p>
+
+<hr/>
+
+## Illustration of the dataset from CoinbaseUSD
+
+```
+                     price_open  price_high  price_low  price_close      volume  close_price_returns close_price_returns_bins  close_price_returns_labels
+DateTime_UTC                                                                                                                                             
+2017-05-29 11:55:00     2158.86     2160.06    2155.78      2156.00   21.034283             0.000000          (-0.334, 0.015]                           5
+2017-05-29 12:00:00     2155.98     2170.88    2155.79      2158.53   47.772555             0.117347           (0.015, 0.364]                           6
+2017-05-29 12:05:00     2158.49     2158.79    2141.12      2141.92  122.332090            -0.769505        (-1.0322, -0.683]                           3
+2017-05-29 12:10:00     2141.87     2165.90    2141.86      2162.44   87.253402             0.958019          (0.713, 1.0623]                           8
+```
+- Scroll right to see all the columns!
+- Volumes are displayed in BTC.
+- Returns are in percentage and are computed on the close prices.
