@@ -7,6 +7,7 @@ from utils import compute_returns
 
 
 def add_returns_in_place(df):  # modifies df
+    # TODO remove NaN values at the beginning for keeping a good consistency.
     close_prices_returns = compute_returns(df)
     num_bins = 10
     returns_bins = pd.qcut(close_prices_returns, num_bins)

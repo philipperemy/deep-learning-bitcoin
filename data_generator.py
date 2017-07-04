@@ -42,7 +42,8 @@ def generate_up_down(data_folder, bitcoin_file):
 def generate_cnn_dataset(data_folder, bitcoin_file, get_class_name):
     btc_df = file_processor(bitcoin_file)
     btc_df, levels = add_returns_in_place(btc_df)
-    # np.mean((btc_df['close_price_returns_labels'] == 1).values)
+    for ii in range(len(levels)):
+        print(ii, np.mean((btc_df['close_price_returns_labels'] == ii).values))
     print(levels)
     slice_size = 40
     test_every_steps = 10
