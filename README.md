@@ -51,3 +51,11 @@ DateTime_UTC
 - Scroll right to see all the columns!
 - Volumes are displayed in BTC.
 - Returns are in percentage and are computed on the close prices.
+
+## How to get started?
+```
+git clone https://github.com/philipperemy/deep-learning-bitcoin.git
+cd deep-learning-bitcoin
+./data_download.sh # will download it to /tmp/
+python3 data_generator.py /tmp/btc-trading-patterns/ /tmp/coinbaseUSD.csv 1 # 1 means we want to use quantiles on returns. 0 would mean we are interested if the bitcoin goes UP or DOWN only.
+```
