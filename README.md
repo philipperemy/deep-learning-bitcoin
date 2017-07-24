@@ -59,3 +59,9 @@ cd deep-learning-bitcoin
 ./data_download.sh # will download it to /tmp/
 python3 data_generator.py /tmp/btc-trading-patterns/ /tmp/coinbaseUSD.csv 1 # 1 means we want to use quantiles on returns. 0 would mean we are interested if the bitcoin goes UP or DOWN only.
 ```
+
+If you are interested into building a huge dataset (coinbase.csv contains around 18M rows), it's preferrable to run the program in background mode:
+
+```
+nohup python3 -u data_generator.py /tmp/btc-trading-patterns/ /tmp/coinbaseUSD.csv 1 > /tmp/btc.out 2>&1 &
+```
