@@ -15,5 +15,11 @@ def file_processor(data_file):
     v = pd.DataFrame(d['volume'].resample('5Min').sum())
     v.columns = ['volume']
     p['volume'] = v['volume']
+
+    # drop NaN values.
+    # for example sometimes we don't have data for like one hour in a row.
+    # So we have NaN buckets of 5Min in this particular hour.
+    # Our convention is to avoid those NaN values and drop them!
+    p = p.dropna()
     p.to_csv('/tmp/bitcoin_coinbase_M5.csv', sep='\t')
     return p
