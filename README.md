@@ -16,7 +16,7 @@ So far, we achieved:
 - [x] Convert to 5-minute data
 - [x] Convert to Open High Low Close representation
 - [x] Train a simple AlexNet on 20,000 samples: accuracy is 70% for predicting if asset will go UP or DOWN
-- [ ] Quantify how much the price will go UP or DOWN. Because the price can go UP by epsilon percent 99% of the time, and pulls back by 50%
+- [x] Quantify how much the price will go UP or DOWN. Because the price can go UP by epsilon percent 99% of the time, and pulls back by 50%
 - [ ] Train on **1,000,000+** samples (at least)
 - [ ] Apply more complex Conv Nets (at least Google LeNet)
 - [ ] Integrate bar volumes on the generated OHLC (Open, High, Low, Close) image
