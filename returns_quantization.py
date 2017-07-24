@@ -7,7 +7,6 @@ from utils import compute_returns
 
 
 def add_returns_in_place(df):  # modifies df
-    # TODO remove NaN values at the beginning for keeping a good consistency.
     close_prices_returns = compute_returns(df)
     num_bins = 10
     returns_bins = pd.qcut(close_prices_returns, num_bins)
@@ -23,13 +22,13 @@ def add_returns_in_place(df):  # modifies df
 
 def generate_bins(bitcoin_file):
     p = file_processor(bitcoin_file)
-    add_returns_in_place(p)
+    print(add_returns_in_place(p))
 
 
 def main():
     arg = sys.argv
     assert len(arg) == 2, 'Usage: python3 {} BITCOIN_MARKET_DATA_CSV_PATH'.format(arg[0])
-    bitcoin_file = arg[2]
+    bitcoin_file = arg[1]
     generate_bins(bitcoin_file)
 
 

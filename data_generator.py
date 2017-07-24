@@ -22,7 +22,6 @@ def generate_quantiles(data_folder, bitcoin_file):
     def get_label(btc_df, btc_slice, i, slice_size):
         class_name = str(btc_df[i + slice_size:i + slice_size + 1]['close_price_returns_labels'].values[0])
         return class_name
-
     return generate_cnn_dataset(data_folder, bitcoin_file, get_label)
 
 
