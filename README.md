@@ -66,3 +66,11 @@ If you are interested into building a huge dataset (coinbase.csv contains around
 nohup python3 -u data_generator.py /tmp/btc-trading-patterns/ /tmp/coinbaseUSD.csv 1 > /tmp/btc.out 2>&1 &
 tail -f /tmp/btc.out
 ```
+
+If you ever see this error:
+
+```
+_tkinter.TclError: no display name and no $DISPLAY environment variable
+```
+
+Please refer to this solution: https://stackoverflow.com/questions/37604289/tkinter-tclerror-no-display-name-and-no-display-environment-variable
