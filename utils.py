@@ -1,3 +1,6 @@
+import matplotlib
+matplotlib.use('Agg')
+
 def compute_returns(p):
     close_prices = p['price_close']
     close_prices_returns = 100 * ((close_prices.shift(-1) - close_prices) / close_prices).fillna(0.0)
