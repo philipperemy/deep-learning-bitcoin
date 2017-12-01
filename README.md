@@ -77,13 +77,13 @@ Please refer to this solution: https://stackoverflow.com/questions/37604289/tkin
 
 ## Run with Docker
 
-To build the docker image execute
+To build the docker image just execute
 
 ```
 docker build -t dlb .
 ```
 
-from the repo folder and then run the container
+from the repository folder and then run the container
 
 ```
 docker run -it --name dlb -v $PWD:/app dlb /bin/bash
