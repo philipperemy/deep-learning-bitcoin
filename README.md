@@ -1,8 +1,8 @@
 # When Bitcoin meets Artifial Intelligence
-[![license](https://img.shields.io/badge/License-Apache_2.0-brightgreen.svg)](https://github.com/philipperemy/keras-attention-mechanism/blob/master/LICENSE) 
-[![dep2](https://img.shields.io/badge/Keras-2.0+-brightgreen.svg)](https://keras.io/) 
-[![dep2](https://img.shields.io/badge/NVIDIA_Digits-5.0+-brightgreen.svg)](https://github.com/NVIDIA/DIGITS/releases) 
-[![dep1](https://img.shields.io/badge/Status-Work_In_Progress-orange.svg)](https://www.tensorflow.org/) 
+[![license](https://img.shields.io/badge/License-Apache_2.0-brightgreen.svg)](https://github.com/philipperemy/keras-attention-mechanism/blob/master/LICENSE)
+[![dep2](https://img.shields.io/badge/Keras-2.0+-brightgreen.svg)](https://keras.io/)
+[![dep2](https://img.shields.io/badge/NVIDIA_Digits-5.0+-brightgreen.svg)](https://github.com/NVIDIA/DIGITS/releases)
+[![dep1](https://img.shields.io/badge/Status-Work_In_Progress-orange.svg)](https://www.tensorflow.org/)
 
 Exploiting Bitcoin prices patterns with Deep Learning. Like OpenAI, we train our models on raw pixel data. Exactly how an experienced human would see the curves and takes an action.
 
@@ -74,3 +74,25 @@ _tkinter.TclError: no display name and no $DISPLAY environment variable
 ```
 
 Please refer to this solution: https://stackoverflow.com/questions/37604289/tkinter-tclerror-no-display-name-and-no-display-environment-variable
+
+## Run with Docker
+
+To build the docker image just execute
+
+```
+docker build -t dlb .
+```
+
+from the repository folder and then run the container
+
+```
+docker run -it --name dlb -v $PWD:/app dlb /bin/bash
+```
+
+the current folder will be mounted into `/app`. To verify the correct mount
+execute inside the container
+
+```
+root@c11ef702a6d6:/app# mount| grep app
+/dev/sda2 on /app type ext4 (rw,relatime,errors=remount-ro,data=ordered)
+```
