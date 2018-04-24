@@ -28,7 +28,10 @@ def generate_quantiles(data_folder, bitcoin_file):
 
 def generate_up_down(data_folder, bitcoin_file):
     def get_price_direction(btc_df, btc_slice, i, slice_size):
-        last_price = btc_slice[-2:-1]['price_close'].values[0]
+        last_price = btc_slice[-2:-1]['price_close'].values[0] #this is actually the second last price
+        last_price = btc_slice[-1:]['price_close'].values[0] #one option to get the correct last price
+        last_price = btc_df[i + slice_size - 1:i + slice_size]['price_close'].values[0] #another option to get the correct last price
+
         next_price = btc_df[i + slice_size:i + slice_size + 1]['price_close'].values[0]
         if last_price < next_price:
             class_name = 'UP'
