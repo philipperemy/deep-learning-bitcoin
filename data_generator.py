@@ -12,7 +12,6 @@ from returns_quantization import add_returns_in_place
 from utils import *
 
 np.set_printoptions(threshold=np.nan)
-pd.set_option('display.height', 1000)
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
