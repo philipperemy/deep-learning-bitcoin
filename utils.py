@@ -1,5 +1,10 @@
 import matplotlib
+
 matplotlib.use('Agg')
+
+import matplotlib.pyplot as plt
+from mpl_finance import candlestick2_ohlc
+
 
 def compute_returns(p):
     close_prices = p['price_close']
@@ -7,9 +12,7 @@ def compute_returns(p):
     return close_prices_returns.shift(1).fillna(0)
 
 
-def plot_p(df):
-    import matplotlib.pyplot as plt
-    from matplotlib.finance import candlestick2_ohlc
+def prepare_plot(df):
     fig, ax = plt.subplots()
     candlestick2_ohlc(ax,
                       df['price_open'].values,
@@ -20,23 +23,17 @@ def plot_p(df):
                       colorup='g',
                       colordown='r',
                       alpha=1)
+    plt.grid(True)
+    return fig
+
+
+def plot_p(df):
+    prepare_plot(df)
     plt.show()
-    print('Done.')
 
 
 def save_to_file(df, filename):
-    import matplotlib.pyplot as plt
-    from matplotlib.finance import candlestick2_ohlc
-    fig, ax = plt.subplots()
-    candlestick2_ohlc(ax,
-                      df['price_open'].values,
-                      df['price_high'].values,
-                      df['price_low'].values,
-                      df['price_close'].values,
-                      width=0.6,
-                      colorup='g',
-                      colordown='r',
-                      alpha=1)
+    fig = prepare_plot(df)
     plt.savefig(filename)
     plt.close(fig)
 
