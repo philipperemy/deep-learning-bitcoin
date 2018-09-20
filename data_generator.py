@@ -1,15 +1,14 @@
-import os
-import shutil
 import sys
 from time import time
-from uuid import uuid4
 
 import numpy as np
+import os
 import pandas as pd
+import shutil
+from uuid import uuid4
 
-from data_manager import file_processor
 from returns_quantization import add_returns_in_place
-from utils import *
+from utils import file_processor, mkdir_p, save_to_file
 
 np.set_printoptions(threshold=np.nan)
 pd.set_option('display.max_rows', 500)
@@ -28,7 +27,7 @@ def generate_quantiles(data_folder, bitcoin_file):
 def generate_up_down(data_folder, bitcoin_file):
     def get_price_direction(btc_df, btc_slice, i, slice_size):
         # last_price = btc_slice[-2:-1]['price_close'].values[0] #this is actually the second last price
-        last_price = btc_slice[-1:]['price_close'].values[0] #one option to get the correct last price
+        last_price = btc_slice[-1:]['price_close'].values[0]  # one option to get the correct last price
         # last_price = btc_df[i + slice_size - 1:i + slice_size]['price_close'].values[0] #another option to get the correct last price
 
         next_price = btc_df[i + slice_size:i + slice_size + 1]['price_close'].values[0]
@@ -76,7 +75,7 @@ def generate_cnn_dataset(data_folder, bitcoin_file, get_class_name):
         mkdir_p(save_dir)
         filename = save_dir + '/' + str(uuid4()) + '.png'
         save_to_file(btc_slice, filename=filename)
-        print('epoch = {0}, time = {1:.3f}, filename = {2}'.format(str(epoch).zfill(8), time() - st, filename))
+        print('num_plots = {0}, time = {1:.3f}, filename = {2}'.format(str(epoch).zfill(8), time() - st, filename))
 
 
 def main():
