@@ -8,7 +8,7 @@ import shutil
 from uuid import uuid4
 
 from returns_quantization import add_returns_in_place
-from utils import file_processor, mkdir_p, save_to_file
+from utils import mkdir_p, save_to_file
 
 np.set_printoptions(threshold=np.nan)
 pd.set_option('display.max_rows', 500)
@@ -41,7 +41,8 @@ def generate_up_down(data_folder, bitcoin_file):
 
 
 def generate_cnn_dataset(data_folder, bitcoin_file, get_class_name):
-    btc_df = file_processor(bitcoin_file)
+    # btc_df = file_processor(bitcoin_file)
+    btc_df = pd.read_csv(bitcoin_file)
     btc_df, levels = add_returns_in_place(btc_df)
 
     print('-' * 80)
