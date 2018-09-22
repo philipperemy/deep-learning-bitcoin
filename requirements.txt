@@ -2,3 +2,4 @@ numpy
 pandas
 matplotlib
 mpl_finance
+tqdm
