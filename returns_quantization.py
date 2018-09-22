@@ -2,7 +2,7 @@ import sys
 
 import pandas as pd
 
-from data_manager import file_processor
+from utils import file_processor
 from utils import compute_returns
 
 
